@@ -1,0 +1,51 @@
+body {
+    display: flex;
+    justify-content: center;
+    background-color: rgba(17, 17, 17, 0.952);
+}
+
+#con-table {
+    width: 60%;
+    margin-top: 50px;
+}
+
+table {
+    width: 100%;
+    border-collapse: collapse;
+    font-family: Arial, sans-serif;
+    font-size: 16px;
+}
+
+table th {
+    font-size: 22px;
+}
+
+table th,
+table td {
+    border: 3px solid #323332;
+    padding: 12px 15px;
+    text-align: left;
+}
+
+table td {
+    background-color: rgba(243, 144, 32, 0.884);
+}
+
+table thead {
+    background-color: rgba(17, 17, 17, 0.952);
+    color: rgba(243, 144, 32, 0.884);
+    font-weight: bold;
+}
+
+table tbody tr:hover {
+    background-color: #ddd;
+    transition: 0.3s;
+}
+
+.c1 {
+    width: 60%;
+}
+
+.c2 {
+    width: 40%;
+}

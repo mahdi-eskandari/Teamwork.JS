@@ -1,19 +1,22 @@
+const signinBtn = document.querySelector(".btn");
 
+signinBtn.addEventListener("click", (e) => {
+    e.preventDefault();
 
-const signinBtn = document.querySelector(".btn")
-signinBtn.addEventListener("click", (e)=>{
-e.preventDefault()
+    let email = document.querySelector("#email").value;
+    let password = document.querySelector("#password").value;
 
-let email = document.querySelector("#email").value
-let password = document.querySelector("#password").value
+    let users = JSON.parse(localStorage.getItem("users")) || [];
 
-let storedEmail = localStorage.getItem("email")
-let  storedPassword = localStorage.getItem("password")
+    let foundUser = users.find(user => user.email === email && user.password === password);
 
-if(email === storedEmail && password === storedPassword){
-alert("Welcome to the game")
-window.location.href = ""
-} else{
-    alert("Email or password is incorrect")
-}
-})
+    if (foundUser) {
+        alert(`Welcome, ${foundUser.name}!`);
+
+        localStorage.setItem("activeUser", JSON.stringify(foundUser));
+
+        window.location.href = "../home-page/index.html";
+    } else {
+        alert("Email or password is incorrect");
+    }
+});

@@ -89,3 +89,18 @@ button:hover {
     width: 200px;
     height: 100%;
 }
+
+
+
+
+#con-profile {
+    display: flex;
+    justify-content: start;
+    align-items: center;
+
+}
+
+.para-score {
+    font-size: 18px;
+    margin-left: 10px;
+}
