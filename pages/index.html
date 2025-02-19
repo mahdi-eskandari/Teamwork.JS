@@ -47,6 +47,107 @@
         border: solid black 1px;
         background-color: aliceblue;
       }
+
+      @media screen and (max-width: 1261px) {
+        .color {
+          width: 40px;
+          height: 40px;
+        }
+        #yourguesses > div > div > .color {
+          width: 35px;
+          height: 35px;
+        }
+        #guess {
+          align-items: center !important;
+        }
+      }
+      @media screen and (max-width: 968px) {
+        main {
+          width: 90%;
+        }
+        .color {
+          width: 42px;
+          height: 42px;
+        }
+        #guess > .color {
+          width: 35px;
+          height: 35px;
+        }
+        #guess {
+          gap: 3px !important;
+        }
+        #father ~ div > p {
+          /* background-color: blue; */
+          width: 10% !important;
+          font-size: medium !important;
+        }
+        #yourguesses > div > p {
+          width: 10%;
+          font-size: medium;
+        }
+        #yourguesses > div > div {
+          gap: 5px !important;
+        }
+      }
+      @media screen and (max-width: 725px) {
+        .color {
+          width: 32px;
+          height: 32px;
+        }
+        #father ~ div > p {
+          /* background-color: blue; */
+          width: 10% !important;
+          font-size: x-small !important;
+        }
+        #yourguesses > div > div > .color {
+          width: 30px;
+          height: 30px;
+        }
+        #guess > .color {
+          width: 28px;
+          height: 28px;
+        }
+        #yourguesses > div > p {
+          width: 10%;
+          font-size: x-small;
+        }
+        #yourguesses > div > div {
+          width: 89% !important;
+          gap: 2px !important;
+        }
+        #yourguesses > div {
+          justify-content: space-between !important;
+        }
+
+        #guess {
+          /* background-color: aqua !important; */
+          gap: 2px !important;
+        }
+        #father {
+          gap: 5px !important;
+        }
+      }
+      @media screen and (max-width: 504px) {
+        #guess {
+          flex-wrap: wrap;
+        }
+        #father {
+          padding: 0 !important;
+
+          flex-wrap: wrap;
+        }
+        #yourguesses > div > div {
+          flex-wrap: wrap;
+        }
+
+        #yourguesses > div > p {
+          width: 17%;
+          font-size: xx-small;
+        }
+        #guessbutton {
+          width: 35% !important;
+        }
+      }
     </style>
   </head>
   <body class="w-100 d-flex justify-content-center align-items-center g-3">
