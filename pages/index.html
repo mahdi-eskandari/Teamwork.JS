@@ -11,9 +11,17 @@
       crossorigin="anonymous"
     />
     <style>
+
+* {
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
+}
+
       body {
         min-height: 100vh;
         max-height: max-content;
+        background-color: rgba(17, 17, 17, 0.952);
       }
       main {
         width: 75%;
@@ -30,6 +38,7 @@
         border-radius: 10px; /* Optional, for rounded borders */
         border-image-slice: 1;
         transition: border-image 1s ease; /* Smooth transition for the border gradient */
+      background-color: rgba(17, 17, 17, 0.952);
       }
       .color {
         background-color: blueviolet;
@@ -40,6 +49,41 @@
       .color:hover {
         box-shadow: 0px 0px 40px 6px rgba(233, 223, 78, 0.73);
       }
+
+      .displayTime {
+    width: 100%;
+    height: 100px;
+    background-color: rgb(216, 216, 216);
+border-radius: 5px;
+display: flex;
+justify-content: space-between;
+align-items: center;
+padding: 25px 15px 10px 15px;
+}
+
+button {
+  background-color: rgba(17, 17, 17, 0.952);
+  border-radius: 5px;
+  width: 250px !important;
+padding: 5px;
+color: rgba(243, 144, 32, 0.884);
+transition: all 0.4s;
+font-size: 17px;
+/* border: 1px solid rgb(92, 92, 92); */
+
+}
+
+button:hover {
+  background-color: rgba(243, 144, 32, 0.884);
+  color: rgba(17, 17, 17, 0.952);
+}
+
+
+.ppp {
+  color: white;
+}
+
+
       main > * {
         width: 100%;
       }
@@ -152,25 +196,24 @@
   </head>
   <body class="w-100 d-flex justify-content-center align-items-center g-3">
     <main>
-      <h1 class="text-center mb-3">game color</h1>
-      <div class="d-flex justify-content-between p-3 bor">
-        <p id="Remaining">Remaining guesses:10</p>
-        <p>Time left:<span id="time"></span></p>
+      <h1 class="text-center mb-3" style="color: rgba(243, 144, 32, 0.884);">game color</h1>
+      <div class="displayTime">
+        <div><p id="Remaining" style="font-size: 18px;">Remaining guesses: 10</p></div>
+        <div><p style="font-size: 18px;">Time left: <span id="time"></span></p></div>
       </div>
-      <h2 class="text-center mt-4">select color</h2>
+      <h2 class="text-center mt-4" style="color: rgba(243, 144, 32, 0.884);">select color</h2>
       <div class="d-flex justify-content-start gap-3 p-3" id="father"></div>
       <div class="d-flex gap-3">
-        <p class="p-4">your current guess:</p>
+        <p class="p-4" style="color: rgba(243, 144, 32, 0.884);">your current guess:</p>
         <div class="d-flex justify-content-start gap-3 p-3" id="guess"></div>
       </div>
       <button
-        class="btn btn-primary me-md-2 w-25"
         type="button"
         id="guessbutton"
       >
         Submit Guess
       </button>
-      <h2 class="text-center p-4">your guesses</h2>
+      <h2 class="text-center p-4" style="color: rgba(243, 144, 32, 0.884);">your guesses</h2>
       <div class="d-flex flex-column gap-3 mb-5" id="yourguesses"></div>
     </main>
     <sc
@@ -281,7 +324,7 @@ guessbutton.addEventListener("click", () => {
     Remaining.textContent = `Remaining guesses: ${numRemaining}`;
     let guesses = `<div class="d-flex justify-content-evenly w-100">
                     <div class="d-flex justify-content-start gap-3 w-75">${guesschildrens}</div>
-                    <p>Correct: ${numcorrect} | Misplaced: ${nummisplaced}</p>
+                    <p class = "ppp">Correct: ${numcorrect} | Misplaced: ${nummisplaced}</p>
                    </div>`;
     yourguesses.innerHTML += guesses
 
