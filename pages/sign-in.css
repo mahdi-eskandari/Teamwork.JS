@@ -1,13 +1,14 @@
-
 body {
     display: flex;
     justify-content: center;
     align-items: center;
     height: 100vh;
     background-color: #f8f9fa;
+    background-color: rgba(17, 17, 17, 0.952);
 }
+
 .login-container {
-    background: white;
+    background-color: rgba(17, 17, 17, 0.952);
     padding: 30px;
     border-radius: 10px;
     box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
@@ -15,6 +16,37 @@ body {
     max-width: 400px;
 }
 
-.btn{
-    background-color: #28a745 !important;
+.btn {
+    /* background-color: #28a745 !important; */
+    background-color: rgba(17, 17, 17, 0.952);
+    border: none;
+    border-radius: 5px;
+}
+
+.btn:hover {
+    background-color: rgba(243, 144, 32, 0.884);
+}
+
+
+.h1 {
+    color: rgba(243, 144, 32, 0.884);
+}
+
+input {
+    display: block;
+    border-radius: 5px;
+    width: 100%;
+    padding: 5px;
+}
+
+.btn {
+    border: 1px solid rgb(42, 42, 44);
+    font-size: 17px;
+    margin-top: 10px;
+    border-radius: 5px;
+}
+
+.btn:hover {
+    color: black;
+    border: 1px solid black;
 }
