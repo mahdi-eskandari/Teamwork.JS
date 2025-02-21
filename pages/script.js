@@ -4,6 +4,12 @@ const password = document.querySelector("#password");
 const confirmPassword = document.querySelector("#confirmPassword");
 const signupBtn = document.querySelector(".btnn");
 
+
+const successMessage = document.createElement("p");
+successMessage.style.color = "green";
+successMessage.style.marginTop = "10px";
+signupBtn.parentElement.appendChild(successMessage);
+
 function check() {
     if (nameFlied.value && email.value && password.value && confirmPassword.value) {
         signupBtn.disabled = false;
@@ -37,7 +43,12 @@ signupBtn.addEventListener("click", (e) => {
 
     saveUserToLocalStorage(name, emailField, passwordField);
 
-    window.location.href = "sign-in.html";
+    successMessage.textContent = "Registration was successful.";
+
+
+    setTimeout(() => {
+        window.location.href = "sign-in.html";
+    }, 1500)
 });
 
 function saveUserToLocalStorage(name, email, password) {
