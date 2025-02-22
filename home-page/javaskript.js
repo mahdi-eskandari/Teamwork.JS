@@ -17,6 +17,17 @@ const startButton = document.querySelector(".button-start");
 
 startButton.addEventListener("click", () => {
     const selectedLevel = selectOption.value;
+
     localStorage.setItem("gameLevel", selectedLevel);
+
     window.location.href = "../pages/index.html";
 });
+
+
+function updateUserScore(newScore) {
+    let activeUser = JSON.parse(localStorage.getItem("activeUser"));
+    if (activeUser) {
+        activeUser.score = newScore;
+        localStorage.setItem("activeUser", JSON.stringify(activeUser));
+    }
+}

@@ -50,30 +50,21 @@ signupBtn.addEventListener("click", (e) => {
 });
 
 function saveUserToLocalStorage(name, email, password) {
-    // ذخیره کاربران
     let users = JSON.parse(localStorage.getItem("users")) || [];
 
     let newUser = {
         name: name,
         email: email,
         password: password,
-        score: Math.floor(Math.random() * 100) // ایجاد امتیاز تصادفی برای کاربر
+        score: 0
     };
 
     users.push(newUser);
     localStorage.setItem("users", JSON.stringify(users));
 
-    // ذخیره leaderboard
+    localStorage.setItem("activeUser", JSON.stringify(newUser));
+
     let leaderboard = JSON.parse(localStorage.getItem("leaderboard")) || [];
     leaderboard.push({ name, score: newUser.score });
     localStorage.setItem("leaderboard", JSON.stringify(leaderboard));
-}
-
-function getUserFromLocalStorage() {
-    let userData = localStorage.getItem("users");
-    if (userData) {
-        return JSON.parse(userData);
-    } else {
-        return null;
-    }
 }

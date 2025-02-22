@@ -37,5 +37,5 @@ document.addEventListener("DOMContentLoaded", () => {
         renderLeaderboard(isAscending);
     });
 
-    renderLeaderboard(); // بارگذاری جدول با ترتیب پیش‌فرض (از بیشترین امتیاز به کمترین)
+    renderLeaderboard();
 });

@@ -211,123 +211,129 @@
     ></script>
     <script>
       const gameLevel = localStorage.getItem("gameLevel") || "easy";
-      const levels = {
-          easy: { colors: ["lime", "gold", "teal", "navy", "maroon", "indigo"], time: 300 },
-          medium: { colors: ["red", "yellow", "orange", "green", "blue", "purple", "cyan", "magenta"], time: 600 },
-          hard: { colors: ["tomato", "yellowgreen", "blueviolet", "orange", "forestgreen", "crimson", "deepskyblue", "darkmagenta", "goldenrod", "dodgerblue"], time: 900 }
-      };
+const levels = {
+    easy: { colors: ["lime", "gold", "teal", "navy", "maroon", "indigo"], time: 300 },
+    medium: { colors: ["red", "yellow", "orange", "green", "blue", "purple", "cyan", "magenta"], time: 600 },
+    hard: { colors: ["tomato", "yellowgreen", "blueviolet", "orange", "forestgreen", "crimson", "deepskyblue", "darkmagenta", "goldenrod", "dodgerblue"], time: 900 }
+};
 
-      const selectedLevel = levels[gameLevel];
-      let color = [];
-      let colors = selectedLevel.colors;
-      let timeLeft = selectedLevel.time;
-      let numRemaining = 10;
-      const colorfather = document.querySelector("#father");
-      const guess = document.querySelector("#guess");
-      const guessbutton = document.querySelector("#guessbutton");
-      const yourguesses = document.querySelector("#yourguesses");
-      const Remaining = document.querySelector("#Remaining");
-      const godtime = document.querySelector("#time");
+const selectedLevel = levels[gameLevel];
+let color = [];
+let colors = selectedLevel.colors;
+let timeLeft = selectedLevel.time;
+let numRemaining = 10;
+const colorfather = document.querySelector("#father");
+const guess = document.querySelector("#guess");
+const guessbutton = document.querySelector("#guessbutton");
+const yourguesses = document.querySelector("#yourguesses");
+const Remaining = document.querySelector("#Remaining");
+const godtime = document.querySelector("#time");
 
-      function ran(size) {
-          color = [];
-          for (let i = 0; i < size.length; i++) {
-              color.push(size[Math.floor(Math.random() * size.length)]);
-          }
-          return color;
-      }
+function ran(size) {
+    color = [];
+    for (let i = 0; i < size.length; i++) {
+        color.push(size[Math.floor(Math.random() * size.length)]);
+    }
+    return color;
+}
 
-      colorfather.innerHTML = "";
-      colors.forEach(element => {
-          colorfather.innerHTML += `<div class="color" style="background-color:${element};"></div>`;
-      });
+colorfather.innerHTML = "";
+colors.forEach(element => {
+    colorfather.innerHTML += `<div class="color" style="background-color:${element};"></div>`;
+});
 
-      ran(colors);
-      console.log("Target Colors:", color);
+ran(colors);
+console.log("Target Colors:", color);
 
-      colorfather.addEventListener("click", (e) => {
-          if (guess.children.length >= color.length) {
-              alert(`Please select less than ${color.length} colors`);
-              return;
-          }
-          let guesscolor = `<div class="color" style="background-color:${e.target.closest(".color").style.backgroundColor};"></div>`;
-          guess.innerHTML += guesscolor;
-      });
+let activeUser = JSON.parse(localStorage.getItem("activeUser")) || { name: "Guest", score: 0 };
 
-      colorfather.addEventListener("mouseover", (e) => {
-          e.target.closest(".color").style.boxShadow = `0px 0px 40px 6px ${e.target.closest(".color").style.backgroundColor}`;
-      });
-      colorfather.addEventListener("mouseout", (e) => {
-          e.target.closest(".color").style.boxShadow = "0px 0px 0px 0px";
-      });
+const scoreDisplay = document.createElement("p");
+scoreDisplay.textContent = `Your Score: ${activeUser.score}`;
+document.body.appendChild(scoreDisplay);
 
-      guessbutton.addEventListener("click", () => {
-          if (guess.children.length < color.length) {
-              alert(`Please select ${color.length} colors`);
-              return;
-          }
+colorfather.addEventListener("click", (e) => {
+    if (guess.children.length >= color.length) {
+        alert(`Please select less than ${color.length} colors`);
+        return;
+    }
+    let guesscolor = `<div class="color" style="background-color:${e.target.closest(".color").style.backgroundColor};"></div>`;
+    guess.innerHTML += guesscolor;
+});
 
-          let nummisplaced = 0;
-          let numcorrect = 0;
-          let num = 0;
-          let guesschildrens = "";
+colorfather.addEventListener("mouseover", (e) => {
+    e.target.closest(".color").style.boxShadow = `0px 0px 40px 6px ${e.target.closest(".color").style.backgroundColor}`;
+});
+colorfather.addEventListener("mouseout", (e) => {
+    e.target.closest(".color").style.boxShadow = "0px 0px 0px 0px";
+});
 
-          for (const element of guess.children) {
-              if (color.includes(element.style.backgroundColor)) {
-                  nummisplaced += 1;
-              }
-              if (color[num] === element.style.backgroundColor) {
-                  numcorrect += 1;
-              }
-              num += 1;
-              guesschildrens += `${element.outerHTML}`;
-          }
+guessbutton.addEventListener("click", () => {
+    if (guess.children.length < color.length) {
+        alert(`Please select ${color.length} colors`);
+        return;
+    }
 
-          numRemaining -= 1;
+    let nummisplaced = 0;
+    let numcorrect = 0;
+    let num = 0;
+    let guesschildrens = "";
 
-          if (numcorrect === color.length) {
-              alert("🎉 You won!");
-              let activeUser = JSON.parse(localStorage.getItem("activeUser")) || { name: "Guest", score: 0 };
-              const scoreIncrement = { easy: 5, medium: 10, hard: 20 };
-              activeUser.score += scoreIncrement[gameLevel];
-              localStorage.setItem("activeUser", JSON.stringify(activeUser));
+    for (const element of guess.children) {
+        if (color.includes(element.style.backgroundColor)) {
+            nummisplaced += 1;
+        }
+        if (color[num] === element.style.backgroundColor) {
+            numcorrect += 1;
+        }
+        num += 1;
+        guesschildrens += `${element.outerHTML}`;
+    }
 
-              // Add to leaderboard
-              const leaderboardData = JSON.parse(localStorage.getItem("leaderboard")) || [];
-              leaderboardData.push({ name: activeUser.name, score: activeUser.score });
-              localStorage.setItem("leaderboard", JSON.stringify(leaderboardData));
-          }
+    numRemaining -= 1;
 
-          if (numRemaining === 0) {
-              alert("💀 You lost!");
-          }
+    if (numcorrect === color.length) {
+        alert("🎉 You won!");
 
-          Remaining.textContent = `Remaining guesses: ${numRemaining}`;
-          let guesses = `<div class="d-flex justify-content-evenly w-100">
-                          <div class="d-flex justify-content-start gap-3 w-75">${guesschildrens}</div>
-                          <p class = "ooo">Correct: ${numcorrect} | Misplaced: ${nummisplaced}</p>
-                         </div>`;
-          yourguesses.innerHTML += guesses;
-          guess.innerHTML = "";
-      });
+        const scoreIncrement = { easy: 5, medium: 10, hard: 20 };
 
-      const timer = setInterval(() => {
-          if (timeLeft <= 10) {
-              godtime.style.color = "red";
-          }
-          let minutes = Math.floor(timeLeft / 60);
-          let seconds = timeLeft % 60;
-          godtime.innerHTML = `${minutes}:${seconds < 10 ? "0" : ""}${seconds}`;
-          timeLeft--;
+        activeUser.score += scoreIncrement[gameLevel];
 
-          if (timeLeft < 0) {
-              clearInterval(timer);
-              alert("Time's up! You lost!");
-              numRemaining = 10;
-              guess.innerHTML = "";
-              Remaining.textContent = `Remaining guesses: ${numRemaining}`;
-          }
-      }, 1000);
+        localStorage.setItem("activeUser", JSON.stringify(activeUser));
+
+        scoreDisplay.textContent = `Your Score: ${activeUser.score}`;
+    }
+
+    if (numRemaining === 0) {
+        alert("💀 You lost!");
+    }
+
+    Remaining.textContent = `Remaining guesses: ${numRemaining}`;
+    let guesses = `<div class="d-flex justify-content-evenly w-100">
+                      <div class="d-flex justify-content-start gap-3 w-75">${guesschildrens}</div>
+                      <p>Correct: ${numcorrect} | Misplaced: ${nummisplaced}</p>
+                    </div>`;
+    yourguesses.innerHTML += guesses;
+    guess.innerHTML = "";
+});
+
+const timer = setInterval(() => {
+    if (timeLeft <= 10) {
+        godtime.style.color = "red";
+    }
+    let minutes = Math.floor(timeLeft / 60);
+    let seconds = timeLeft % 60;
+    godtime.innerHTML = `${minutes}:${seconds < 10 ? "0" : ""}${seconds}`;
+    timeLeft--;
+
+    if (timeLeft < 0) {
+        clearInterval(timer);
+        alert("Time's up! You lost!");
+        numRemaining = 10;
+        guess.innerHTML = "";
+        Remaining.textContent = `Remaining guesses: ${numRemaining}`;
+    }
+}, 1000);
+
     </script>
   </body>
 </html>
