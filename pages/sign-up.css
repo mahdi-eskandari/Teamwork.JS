@@ -1,0 +1,40 @@
+body {
+    background-color: rgba(17, 17, 17, 0.952);
+}
+
+.container-box {
+    background-color: rgba(17, 17, 17, 0.952);
+    padding: 30px;
+    border-radius: 10px;
+    box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+    width: 50%;
+    border: 2px solid rgba(243, 144, 32, 0.884);
+}
+
+.btn-custom {
+    width: 100%;
+    background-color: rgba(37, 37, 37, 0.952);
+    border-radius: 5px;
+    color: white;
+    border: none;
+    padding: 10px;
+    font-size: 17px;
+}
+
+.btn-custom:hover {
+    background-color: rgba(243, 144, 32, 0.884);
+    color: black;
+}
+
+.h2 {
+    color: rgba(243, 144, 32, 0.884);
+}
+
+.qqq {
+    display: block;
+    width: 100%;
+    border-radius: 5px;
+    margin-top: 10px;
+    padding: 7px;
+    background-color: rgb(214, 214, 214);
+}

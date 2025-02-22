@@ -1,0 +1,97 @@
+body {
+    display: flex;
+    justify-content: center;
+    background-color: rgba(17, 17, 17, 0.952);
+}
+
+#con-table {
+    width: 60%;
+    margin-top: 50px;
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+}
+
+table {
+    width: 100%;
+    border-collapse: collapse;
+    font-family: Arial, sans-serif;
+    font-size: 16px;
+}
+
+table th {
+    font-size: 22px;
+}
+
+table th,
+table td {
+    border: 3px solid #323332;
+    padding: 12px 15px;
+    text-align: left;
+}
+
+table td {
+    background-color: rgba(243, 144, 32, 0.884);
+}
+
+table thead {
+    background-color: rgba(17, 17, 17, 0.952);
+    color: rgba(243, 144, 32, 0.884);
+    font-weight: bold;
+}
+
+table tbody tr:hover {
+    background-color: #ddd;
+    transition: 0.3s;
+}
+
+.c1 {
+    width: 60%;
+}
+
+.c2 {
+    width: 40%;
+}
+
+#toggleScoresBtn {
+    background-color: rgba(243, 144, 32, 0.884);
+    color: black;
+    font-size: 1rem;
+    padding: 10px 20px;
+    width: 100%;
+    margin-top: 10px;
+    border: 1px solid rgba(243, 144, 32, 0.884);
+    border-radius: 5px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    margin-bottom: 15px;
+}
+
+#toggleScoresBtn:hover {
+    background-color: #0c0c0c;
+    border: 1px solid #1b1b1b;
+    color: rgba(243, 144, 32, 0.884);
+
+}
+
+a {
+    width: 200px;
+    padding: 10px 30px;
+    background-color: #0c0c0c;
+    text-decoration: none;
+    border-radius: 5px;
+    color: rgba(243, 144, 32, 0.884);
+    transition: all 0.3s ease;
+
+}
+
+a:hover {
+    background-color: rgba(243, 144, 32, 0.884);
+    color: white;
+}
+
+h1 {
+    color: rgb(192, 192, 192);
+    text-align: center;
+    font-size: 27px;
+}
