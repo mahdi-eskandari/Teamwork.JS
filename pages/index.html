@@ -11,12 +11,11 @@
       crossorigin="anonymous"
     />
     <style>
-
-* {
-  padding: 0;
-  margin: 0;
-  box-sizing: border-box;
-}
+      * {
+        padding: 0;
+        margin: 0;
+        box-sizing: border-box;
+      }
 
       body {
         min-height: 100vh;
@@ -38,9 +37,9 @@
         border-radius: 10px; /* Optional, for rounded borders */
         border-image-slice: 1;
         transition: border-image 1s ease; /* Smooth transition for the border gradient */
-      background-color: rgba(17, 17, 17, 0.952);
-      border: 2px solid rgba(243, 144, 32, 0.884);
-      margin: 10px 0;
+        background-color: rgba(17, 17, 17, 0.952);
+        border: 2px solid rgba(243, 144, 32, 0.884);
+        margin: 10px 0;
       }
       .color {
         background-color: blueviolet;
@@ -53,38 +52,34 @@
       }
 
       .displayTime {
-    width: 100%;
-    height: 100px;
-    background-color: rgb(216, 216, 216);
-border-radius: 5px;
-display: flex;
-justify-content: space-between;
-align-items: center;
-padding: 25px 15px 10px 15px;
-}
+        width: 100%;
+        height: 100px;
+        background-color: rgb(216, 216, 216);
+        border-radius: 5px;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        padding: 25px 15px 10px 15px;
+      }
 
-button {
-  background-color: rgba(17, 17, 17, 0.952);
-  border-radius: 5px;
-  width: 250px !important;
-padding: 5px;
-color: rgba(243, 144, 32, 0.884);
-transition: all 0.4s;
-font-size: 17px;
-/* border: 1px solid rgb(92, 92, 92); */
+      button {
+        background-color: rgba(17, 17, 17, 0.952);
+        border-radius: 5px;
+        width: 250px !important;
+        padding: 5px;
+        color: rgba(243, 144, 32, 0.884);
+        transition: all 0.4s;
+        font-size: 17px;
+      }
 
-}
+      button:hover {
+        background-color: rgba(243, 144, 32, 0.884);
+        color: rgba(17, 17, 17, 0.952);
+      }
 
-button:hover {
-  background-color: rgba(243, 144, 32, 0.884);
-  color: rgba(17, 17, 17, 0.952);
-}
-
-
-.ppp {
-  color: white;
-}
-
+      .ooo {
+        color: white;
+      }
 
       main > * {
         width: 100%;
@@ -123,7 +118,6 @@ button:hover {
           gap: 3px !important;
         }
         #father ~ div > p {
-          /* background-color: blue; */
           width: 10% !important;
           font-size: medium !important;
         }
@@ -141,7 +135,6 @@ button:hover {
           height: 32px;
         }
         #father ~ div > p {
-          /* background-color: blue; */
           width: 10% !important;
           font-size: x-small !important;
         }
@@ -166,7 +159,6 @@ button:hover {
         }
 
         #guess {
-          /* background-color: aqua !important; */
           gap: 2px !important;
         }
         #father {
@@ -179,7 +171,6 @@ button:hover {
         }
         #father {
           padding: 0 !important;
-
           flex-wrap: wrap;
         }
         #yourguesses > div > div {
@@ -198,161 +189,145 @@ button:hover {
   </head>
   <body class="w-100 d-flex justify-content-center align-items-center g-3">
     <main>
-      <h1 class="text-center mb-3" style="color: rgba(243, 144, 32, 0.884);">game color</h1>
+      <h1 class="text-center mb-3" style="color: rgba(243, 144, 32, 0.884);">Game Color</h1>
       <div class="displayTime">
         <div><p id="Remaining" style="font-size: 18px;">Remaining guesses: 10</p></div>
         <div><p style="font-size: 18px;">Time left: <span id="time"></span></p></div>
       </div>
-      <h2 class="text-center mt-4" style="color: rgba(243, 144, 32, 0.884);">select color</h2>
+      <h2 class="text-center mt-4" style="color: rgba(243, 144, 32, 0.884);">Select Color</h2>
       <div class="d-flex justify-content-start gap-3 p-3" id="father"></div>
       <div class="d-flex gap-3">
-        <p class="p-4" style="color: rgba(243, 144, 32, 0.884);">your current guess:</p>
+        <p class="p-4" style="color: rgba(243, 144, 32, 0.884);">Your Current Guess:</p>
         <div class="d-flex justify-content-start gap-3 p-3" id="guess"></div>
       </div>
-      <button
-        type="button"
-        id="guessbutton"
-      >
-        Submit Guess
-      </button>
-      <h2 class="text-center p-4" style="color: rgba(243, 144, 32, 0.884);">your guesses</h2>
+      <button type="button" id="guessbutton">Submit Guess</button>
+      <h2 class="text-center p-4" style="color: rgba(243, 144, 32, 0.884);">Your Guesses</h2>
       <div class="d-flex flex-column gap-3 mb-5" id="yourguesses"></div>
     </main>
-    <sc
+    <script
       src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"
       integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz"
       crossorigin="anonymous"
     ></script>
-    
-<script>
-const gameLevel = localStorage.getItem("gameLevel") || "easy";
+    <script>
+      const gameLevel = localStorage.getItem("gameLevel") || "easy";
+      const levels = {
+          easy: { colors: ["lime", "gold", "teal", "navy", "maroon", "indigo"], time: 300 },
+          medium: { colors: ["red", "yellow", "orange", "green", "blue", "purple", "cyan", "magenta"], time: 600 },
+          hard: { colors: ["tomato", "yellowgreen", "blueviolet", "orange", "forestgreen", "crimson", "deepskyblue", "darkmagenta", "goldenrod", "dodgerblue"], time: 900 }
+      };
 
-const levels = {
-    easy: { colors: ["lime", "gold", "teal", "navy", "maroon", "indigo"], time: 300 },
-    medium: { colors: ["red", "yellow", "orange", "green", "blue", "purple", "cyan", "magenta"], time: 600 },
-    hard: { colors: ["tomato", "yellowgreen", "blueviolet", "orange", "forestgreen", "crimson", "deepskyblue", "darkmagenta", "goldenrod", "dodgerblue"], time: 900 }
-};
+      const selectedLevel = levels[gameLevel];
+      let color = [];
+      let colors = selectedLevel.colors;
+      let timeLeft = selectedLevel.time;
+      let numRemaining = 10;
+      const colorfather = document.querySelector("#father");
+      const guess = document.querySelector("#guess");
+      const guessbutton = document.querySelector("#guessbutton");
+      const yourguesses = document.querySelector("#yourguesses");
+      const Remaining = document.querySelector("#Remaining");
+      const godtime = document.querySelector("#time");
 
-const selectedLevel = levels[gameLevel]
+      function ran(size) {
+          color = [];
+          for (let i = 0; i < size.length; i++) {
+              color.push(size[Math.floor(Math.random() * size.length)]);
+          }
+          return color;
+      }
 
-let color = [];
-let colors = selectedLevel.colors
-let timeLeft = selectedLevel.time
-let numRemaining = 10
+      colorfather.innerHTML = "";
+      colors.forEach(element => {
+          colorfather.innerHTML += `<div class="color" style="background-color:${element};"></div>`;
+      });
 
-const colorfather = document.querySelector("#father")
-const guess = document.querySelector("#guess")
-const guessbutton = document.querySelector("#guessbutton")
-const yourguesses = document.querySelector("#yourguesses")
-const Remaining = document.querySelector("#Remaining")
-const godtime = document.querySelector("#time")
+      ran(colors);
+      console.log("Target Colors:", color);
 
-function ran(size) {
-    color = [];
-    for (let i = 0; i < size.length; i++) {
-        color.push(size[Math.floor(Math.random() * size.length)]);
-    }
-    return color;
-}
+      colorfather.addEventListener("click", (e) => {
+          if (guess.children.length >= color.length) {
+              alert(`Please select less than ${color.length} colors`);
+              return;
+          }
+          let guesscolor = `<div class="color" style="background-color:${e.target.closest(".color").style.backgroundColor};"></div>`;
+          guess.innerHTML += guesscolor;
+      });
 
-colorfather.innerHTML = "";
-colors.forEach(element => {
-    colorfather.innerHTML += `<div class="color" style="background-color:${element};"></div>`;
-});
+      colorfather.addEventListener("mouseover", (e) => {
+          e.target.closest(".color").style.boxShadow = `0px 0px 40px 6px ${e.target.closest(".color").style.backgroundColor}`;
+      });
+      colorfather.addEventListener("mouseout", (e) => {
+          e.target.closest(".color").style.boxShadow = "0px 0px 0px 0px";
+      });
 
-ran(colors);
-console.log("Target Colors:", color);
+      guessbutton.addEventListener("click", () => {
+          if (guess.children.length < color.length) {
+              alert(`Please select ${color.length} colors`);
+              return;
+          }
 
-colorfather.addEventListener("click", (e) => {
-    if (guess.children.length >= color.length) {
-        alert(`Please select less than ${color.length} colors`)
-        return;
-    }
-    let guesscolor = `<div class="color" style="background-color:${e.target.closest(".color").style.backgroundColor};"></div>`;
-    guess.innerHTML += guesscolor;
-});
+          let nummisplaced = 0;
+          let numcorrect = 0;
+          let num = 0;
+          let guesschildrens = "";
 
-colorfather.addEventListener("mouseover", (e) => {
-    e.target.closest(".color").style.boxShadow = `0px 0px 40px 6px ${e.target.closest(".color").style.backgroundColor}`;
-});
-colorfather.addEventListener("mouseout", (e) => {
-    e.target.closest(".color").style.boxShadow = `0px 0px 0px 0px ${e.target.closest(".color").style.backgroundColor}`;
-});
+          for (const element of guess.children) {
+              if (color.includes(element.style.backgroundColor)) {
+                  nummisplaced += 1;
+              }
+              if (color[num] === element.style.backgroundColor) {
+                  numcorrect += 1;
+              }
+              num += 1;
+              guesschildrens += `${element.outerHTML}`;
+          }
 
-guessbutton.addEventListener("click", () => {
-    if (guess.children.length < color.length) {
-        alert(`Please select ${color.length} colors`)
-        return;
-    }
+          numRemaining -= 1;
 
-    let nummisplaced = 0
-    let numcorrect = 0
-    let num = 0;
-    let guesschildrens = ""
+          if (numcorrect === color.length) {
+              alert("🎉 You won!");
+              let activeUser = JSON.parse(localStorage.getItem("activeUser")) || { name: "Guest", score: 0 };
+              const scoreIncrement = { easy: 5, medium: 10, hard: 20 };
+              activeUser.score += scoreIncrement[gameLevel];
+              localStorage.setItem("activeUser", JSON.stringify(activeUser));
 
-    for (const element of guess.children) {
-        if (color.includes(element.style.backgroundColor)) {
-            nummisplaced += 1;
-        }
-        if (color[num] === element.style.backgroundColor) {
-            numcorrect += 1;
-        }
-        num += 1;
-        guesschildrens += `${element.outerHTML}`
-    }
+              // Add to leaderboard
+              const leaderboardData = JSON.parse(localStorage.getItem("leaderboard")) || [];
+              leaderboardData.push({ name: activeUser.name, score: activeUser.score });
+              localStorage.setItem("leaderboard", JSON.stringify(leaderboardData));
+          }
 
-    numRemaining -= 1
+          if (numRemaining === 0) {
+              alert("💀 You lost!");
+          }
 
-    if (numcorrect === color.length) {
-        alert("🎉 You won!");
+          Remaining.textContent = `Remaining guesses: ${numRemaining}`;
+          let guesses = `<div class="d-flex justify-content-evenly w-100">
+                          <div class="d-flex justify-content-start gap-3 w-75">${guesschildrens}</div>
+                          <p class = "ooo">Correct: ${numcorrect} | Misplaced: ${nummisplaced}</p>
+                         </div>`;
+          yourguesses.innerHTML += guesses;
+          guess.innerHTML = "";
+      });
 
-        let activeUser = JSON.parse(localStorage.getItem("activeUser")) || { name: "Guest", score: 0 }
-        const scoreIncrement = {
-            easy: 5,
-            medium: 10,
-            hard: 20
-        };
-        activeUser.score += scoreIncrement[gameLevel]
-        localStorage.setItem("activeUser", JSON.stringify(activeUser))
+      const timer = setInterval(() => {
+          if (timeLeft <= 10) {
+              godtime.style.color = "red";
+          }
+          let minutes = Math.floor(timeLeft / 60);
+          let seconds = timeLeft % 60;
+          godtime.innerHTML = `${minutes}:${seconds < 10 ? "0" : ""}${seconds}`;
+          timeLeft--;
 
-        const p_score = document.querySelector(".para-score")
-        p_score.textContent = `Hello, ${activeUser.name} (Score: ${activeUser.score || 0})`
-    }
-
-    if (numRemaining === 0) {
-        alert("💀 You lost!");
-    }
-
-    Remaining.textContent = `Remaining guesses: ${numRemaining}`;
-    let guesses = `<div class="d-flex justify-content-evenly w-100">
-                    <div class="d-flex justify-content-start gap-3 w-75">${guesschildrens}</div>
-                    <p class = "ppp">Correct: ${numcorrect} | Misplaced: ${nummisplaced}</p>
-                   </div>`;
-    yourguesses.innerHTML += guesses
-
-    guess.innerHTML = ""
-});
-
-const timer = setInterval(() => {
-    if (timeLeft <= 10) {
-        godtime.style.color = "red"
-    }
-    let minutes = Math.floor(timeLeft / 60)
-    let seconds = timeLeft % 60
-    godtime.innerHTML = `${minutes}:${seconds < 10 ? "0" : ""}${seconds}`
-    timeLeft--;
-
-    if (timeLeft < 0) {
-        clearInterval(timer);
-        alert("Time's up! You lost!");
-        
-        numRemaining = 10
-        guess.innerHTML = ""
-        Remaining.textContent = `Remaining guesses: ${numRemaining}`
-    }
-}, 1000)
-</script>
-
-    
+          if (timeLeft < 0) {
+              clearInterval(timer);
+              alert("Time's up! You lost!");
+              numRemaining = 10;
+              guess.innerHTML = "";
+              Remaining.textContent = `Remaining guesses: ${numRemaining}`;
+          }
+      }, 1000);
+    </script>
   </body>
 </html>

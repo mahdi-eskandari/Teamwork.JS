@@ -4,7 +4,6 @@ const password = document.querySelector("#password");
 const confirmPassword = document.querySelector("#confirmPassword");
 const signupBtn = document.querySelector(".btnn");
 
-
 const successMessage = document.createElement("p");
 successMessage.style.color = "green";
 successMessage.style.marginTop = "10px";
@@ -45,24 +44,29 @@ signupBtn.addEventListener("click", (e) => {
 
     successMessage.textContent = "Registration was successful.";
 
-
     setTimeout(() => {
         window.location.href = "sign-in.html";
-    }, 1500)
+    }, 1500);
 });
 
 function saveUserToLocalStorage(name, email, password) {
+    // ذخیره کاربران
     let users = JSON.parse(localStorage.getItem("users")) || [];
 
     let newUser = {
         name: name,
         email: email,
-        password: password
+        password: password,
+        score: Math.floor(Math.random() * 100) // ایجاد امتیاز تصادفی برای کاربر
     };
 
     users.push(newUser);
-
     localStorage.setItem("users", JSON.stringify(users));
+
+    // ذخیره leaderboard
+    let leaderboard = JSON.parse(localStorage.getItem("leaderboard")) || [];
+    leaderboard.push({ name, score: newUser.score });
+    localStorage.setItem("leaderboard", JSON.stringify(leaderboard));
 }
 
 function getUserFromLocalStorage() {
