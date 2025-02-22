@@ -4,6 +4,11 @@ const password = document.querySelector("#password");
 const confirmPassword = document.querySelector("#confirmPassword");
 const signupBtn = document.querySelector(".btnn");
 
+const successMessage = document.createElement("p");
+successMessage.style.color = "green";
+successMessage.style.marginTop = "10px";
+signupBtn.parentElement.appendChild(successMessage);
+
 function check() {
     if (nameFlied.value && email.value && password.value && confirmPassword.value) {
         signupBtn.disabled = false;
@@ -37,7 +42,11 @@ signupBtn.addEventListener("click", (e) => {
 
     saveUserToLocalStorage(name, emailField, passwordField);
 
-    window.location.href = "sign-in.html";
+    successMessage.textContent = "Registration was successful.";
+
+    setTimeout(() => {
+        window.location.href = "sign-in.html";
+    }, 1500);
 });
 
 function saveUserToLocalStorage(name, email, password) {
@@ -46,19 +55,16 @@ function saveUserToLocalStorage(name, email, password) {
     let newUser = {
         name: name,
         email: email,
-        password: password
+        password: password,
+        score: 0
     };
 
     users.push(newUser);
-
     localStorage.setItem("users", JSON.stringify(users));
-}
 
-function getUserFromLocalStorage() {
-    let userData = localStorage.getItem("users");
-    if (userData) {
-        return JSON.parse(userData);
-    } else {
-        return null;
-    }
+    localStorage.setItem("activeUser", JSON.stringify(newUser));
+
+    let leaderboard = JSON.parse(localStorage.getItem("leaderboard")) || [];
+    leaderboard.push({ name, score: newUser.score });
+    localStorage.setItem("leaderboard", JSON.stringify(leaderboard));
 }
